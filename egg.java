@@ -6,10 +6,6 @@ import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.StrokeBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.MouseInputAdapter;
-import javax.swing.event.MouseInputListener;
-
-import org.w3c.dom.events.MouseEvent;
 public class egg extends Jpanel implements Runnable {
     /**
      *
@@ -28,15 +24,14 @@ public class egg extends Jpanel implements Runnable {
     int in=0;
     int speed=15;
     int lifes=10;
+
     static Color c1=Color.ORANGE,c2=Color.YELLOW;
-
-
+    
     public Eggs(){
-
         b.set.Mx(30);
         b.set.My(200);
         setOpaque(false);
-
+    
         try{
             setBorder(BorderFactory.createTitledBorder(null, "", TitledBorder.CENTER,TitledBorder.ABOVE_TOP,new Font("Tahoma",1,24), new Color (200, 0 , 0 )));
             for (LookAndFeelInfo inf: UIManager.getInstalledLookAndFeels()){
@@ -46,7 +41,6 @@ public class egg extends Jpanel implements Runnable {
                 }
             }
         }
-
 
         catch(Exception e){
             System.out.println(e);
