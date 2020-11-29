@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.annotation.Target;
@@ -146,4 +147,31 @@ public void paint(Graphics g2){
             System.out.println(e);
         }
     }
+
+    public static void main(String args[]){
     
+        JFrame jfm = new JFrame();
+        jfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jfm.setLayout(new BorderLayout());
+        jfm.getContentPane().setBackground(c1);
+        JLabel l= new JLabel("Your Score Along With Life Is Displayed Here");
+        l.setBorder(BorderFactory.createTitledBorder(null, "Eggs!!", TitledBorder.CENTER, TitledBorder.ABOVE_TOP, new Font("Tahoma", 1, 24), Color.WHITE));
+        jfm.add(l,BorderLayout.NORTH);
+        final Eggs eg = new Eggs();
+        eg.b.setOutputComponent(l);
+        KeyListener kl = new KeyAdapter(){
+            public void keyPressed(KeyEvent ke){
+          if(ke.getKeyCode()==KeyEvent.VK_RIGHT){
+              eg.b.setMx(eg.b.MX+2);
+          }
+          if(ke.getKeyCode()==KeyEvent.VK_LEFT){
+              eg.b.setMx(eg.b.MX-2);
+          }
+            }
+        };
+        jfm.addKeyListener(kl);
+        jfm.add(eg);
+        jfm.setSize(FWIDTH, FHEIGHT);
+        jfm.setVisible(true);
+    }
+}
