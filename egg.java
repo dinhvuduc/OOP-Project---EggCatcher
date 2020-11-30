@@ -175,3 +175,56 @@ public void paint(Graphics g2){
         jfm.setVisible(true);
     }
 }
+class EggMover{
+    
+    ActionListener al;
+    Timer timer;
+    Egg egg;
+    Bowl b;
+    boolean allowed=true;
+    
+    public EggMover(Egg eg,Bowl bl){
+    egg=eg;
+    b=bl;
+    al=new ActionListener(){
+        public void actionPerformed(ActionEvent ae){
+            egg.setMy(egg.MY+1);
+            if(isAllowed()){
+                if(egg.fallsInBowl(b)){
+                    egg.reset();
+                    b.updateScore();
+                }
+            }
+                if(egg.r.y+egg.r.height>b.r.y+b.r.height/2&&!egg.fallsInBowl(b)){
+                    allowed=false;
+                    if(egg.r.y+egg.r.height*2>=275){
+                        egg.reset();
+                        b.lifes-=1;
+                        b.score-=10;
+                        b.updateLife();
+                    }
+                }
+            
+                else{
+                    allowed=true;
+               }
+        }
+    };
+    timer= new Timer(10,al);
+    }
+    void setInitialDelay(int i){
+        timer.setInitialDelay(i);
+    }
+    
+    boolean isAllowed(){
+        return allowed;
+    }
+    
+    void move(){
+        timer.start();
+    }
+    
+    void stop(){
+        timer.stop();
+    }
+}
