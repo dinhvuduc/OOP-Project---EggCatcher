@@ -1,11 +1,9 @@
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.annotation.Target;
 import java.util.Random;
 import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.border.StrokeBorder;
 import javax.swing.border.TitledBorder;
 public class Eggs extends JPanel implements Runnable {
     /**
