@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.StrokeBorder;
 import javax.swing.border.TitledBorder;
-public class egg extends JPPanel implements Runnable {
+public class Eggs extends JPanel implements Runnable {
     /**
      *
      */
@@ -15,7 +15,7 @@ public class egg extends JPPanel implements Runnable {
     Thread th;
     Graphics2D g;
     int dx,dy;
-    Bowl b= new Bowl();
+    Bowl b = new Bowl();
     int NUM=5;
     Egg egg[]= new Egg[NUM];
     EggMover movers[]= new EggMover[NUM];
@@ -48,7 +48,7 @@ public class egg extends JPPanel implements Runnable {
         }
         //Listener Starts//
 
-        for(int i = 0; i < egg.length; i++ ){
+        for(int i = 0; i < egg.length; ++i ){
             egg[i]  =   new Egg();
             egg[i].setMy(30);
             egg[i].reset();
@@ -61,7 +61,7 @@ public class egg extends JPPanel implements Runnable {
 
         }
 
-        MouseInputListener ml = new MouseAdapter(){
+        MouseListener ml = new MouseAdapter(){
             public void mousePressed(MouseEvent me){
                 dx= (int)me.getPoint().getX();
                 if(b.contains(me.getPoint())){
@@ -76,20 +76,19 @@ public class egg extends JPPanel implements Runnable {
         MouseMotionListener mll = new MouseAdapter(){
             public void mouseDragged( MouseEvent me){
                 if (inside == true){
-                    b.setMx( int)me.getPoint().getX();
+                    b.setMx(( int)me.getPoint().getX());
                 }
             }
         };
 
-        addMouseListener(mll);
+        addMouseMotionListener(mll);
 
-        th= new Thread(Target this);
+        th= new Thread(this);
         th.start();
     }
 
     
 
-}
 public void paint(Graphics g2){
     g=(Graphics2D)g2;
     g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -183,9 +182,9 @@ class EggMover{
     Bowl b;
     boolean allowed=true;
     
-    public EggMover(Egg eg,Bowl bl){
-    egg=eg;
-    b=bl;
+    public EggMover(Egg egg2, Bowl b2) {
+        egg = egg2;
+        b = b2;
     al=new ActionListener(){
         public void actionPerformed(ActionEvent ae){
             egg.setMy(egg.MY+1);
@@ -226,6 +225,41 @@ class EggMover{
     
     void stop(){
         timer.stop();
+    }
+}
+    class Egg{
+
+        int MX,MY;
+        Rectangle r;
+        Random rn= new Random();
+        
+        Egg(){
+            
+        }
+        
+        boolean fallsInBowl(Bowl b){
+            return r.intersects(b.r);
+        }
+        
+        void setMx(int dx){
+           MX=dx; 
+        }
+        
+        void setMy(int dy){
+            MY=dy;
+        }
+        
+        public void reset(){
+            setMy(30);
+            setMx(30+rn.nextInt(Eggs.FWIDTH-40));
+        }
+        
+        void drawOn(Graphics2D g){
+            GradientPaint gp= new GradientPaint(MX,MY,Color.GRAY.brighter(),MX+5,MY+15/2,Color.lightGray.brighter());
+            g.setPaint(gp);
+            g.fillOval(MX, MY, 10, 15);
+            r=new Rectangle(MX,MY,10,15/2);
+        }
     }
     class Bowl{
 
@@ -270,38 +304,3 @@ class EggMover{
             r=new Rectangle(MX-15,MY,30,20);
         }
     }
-    class Egg{
-
-        int MX,MY;
-        Rectangle r;
-        Random rn= new Random();
-        
-        Egg(){
-            
-        }
-        
-        boolean fallsInBowl(Bowl b){
-            return r.intersects(b.r);
-        }
-        
-        void setMx(int dx){
-           MX=dx; 
-        }
-        
-        void setMy(int dy){
-            MY=dy;
-        }
-        
-        public void reset(){
-            setMy(30);
-            setMx(30+rn.nextInt(Eggs.FWIDTH-40));
-        }
-        
-        void drawOn(Graphics2D g){
-            GradientPaint gp= new GradientPaint(MX,MY,Color.GRAY.brighter(),MX+5,MY+15/2,Color.lightGray.brighter());
-            g.setPaint(gp);
-            g.fillOval(MX, MY, 10, 15);
-            r=new Rectangle(MX,MY,10,15/2);
-        }
-    }
-}
