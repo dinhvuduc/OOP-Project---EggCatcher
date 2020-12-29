@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.StrokeBorder;
 import javax.swing.border.TitledBorder;
-public class egg extends Jpanel implements Runnable {
+public class egg extends JPPanel implements Runnable {
     /**
      *
      */
@@ -29,8 +29,8 @@ public class egg extends Jpanel implements Runnable {
     static Color c1=Color.ORANGE,c2=Color.YELLOW;
     
     public Eggs(){
-        b.set.Mx(30);
-        b.set.My(200);
+        b.setMx(30);
+        b.setMy(200);
         setOpaque(false);
     
         try{
