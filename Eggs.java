@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.StrokeBorder;
 import javax.swing.border.TitledBorder;
-public class Egg extends JPanel implements Runnable {
+public class Eggs extends JPanel implements Runnable {
     /**
      *
      */
@@ -15,9 +15,9 @@ public class Egg extends JPanel implements Runnable {
     Thread th;
     Graphics2D g;
     int dx,dy;
-    Bowl b= new Bowl();
+    Bowl b = new Bowl();
     int NUM=5;
-    Egg egg[]= new Egg[NUM];
+    Egg egg[] = new Egg[NUM];
     EggMover movers[]= new EggMover[NUM];
     boolean inside=false;
     Timer timer[] = new Timer[NUM];
@@ -28,7 +28,7 @@ public class Egg extends JPanel implements Runnable {
 
     static Color c1=Color.ORANGE,c2=Color.YELLOW;
     
-    public Egg(){
+    public Eggs(){
         b.setMx(30);
         b.setMy(200);
         setOpaque(false);
@@ -180,9 +180,9 @@ class EggMover{
     Bowl b;
     boolean allowed=true;
     
-    public EggMover(Egg eg,Bowl b2){
-    egg=eg;
-    b=b2;
+    public EggMover(Egg eg, Bowl b2) {
+        egg = eg;
+        b = b2;
     al=new ActionListener(){
         public void actionPerformed(ActionEvent ae){
             egg.setMy(egg.MY+1);
