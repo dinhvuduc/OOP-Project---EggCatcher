@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -25,12 +24,10 @@ public class Eggs extends JPanel implements Runnable {
     int lifes=10;
 
     static Color c1=Color.ORANGE,c2=Color.YELLOW;
-    
     public Eggs(){
-        b.setMx(30);
-        b.setMy(200);
-        setOpaque(false);
-    
+    b.setMx(30);
+    b.setMy(200);
+    setOpaque(false);
         try{
             setBorder(BorderFactory.createTitledBorder(null, "", TitledBorder.CENTER,TitledBorder.ABOVE_TOP,new Font("Tahoma",1,24), new Color (200, 0 , 0 )));
             for (LookAndFeelInfo inf: UIManager.getInstalledLookAndFeels()){
