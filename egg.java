@@ -270,4 +270,38 @@ class EggMover{
             r=new Rectangle(MX-15,MY,30,20);
         }
     }
+    class Egg{
+
+        int MX,MY;
+        Rectangle r;
+        Random rn= new Random();
+        
+        Egg(){
+            
+        }
+        
+        boolean fallsInBowl(Bowl b){
+            return r.intersects(b.r);
+        }
+        
+        void setMx(int dx){
+           MX=dx; 
+        }
+        
+        void setMy(int dy){
+            MY=dy;
+        }
+        
+        public void reset(){
+            setMy(30);
+            setMx(30+rn.nextInt(Eggs.FWIDTH-40));
+        }
+        
+        void drawOn(Graphics2D g){
+            GradientPaint gp= new GradientPaint(MX,MY,Color.GRAY.brighter(),MX+5,MY+15/2,Color.lightGray.brighter());
+            g.setPaint(gp);
+            g.fillOval(MX, MY, 10, 15);
+            r=new Rectangle(MX,MY,10,15/2);
+        }
+    }
 }
