@@ -209,7 +209,8 @@ class EggMover{
     };
     timer= new Timer(10,al);
     }
-    void setInitialDelay(int i){
+
+    void setInitialDelay(int i) {
         timer.setInitialDelay(i);
     }
     
