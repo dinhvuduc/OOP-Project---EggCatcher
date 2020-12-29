@@ -20,7 +20,7 @@ public class Eggs extends JPanel implements Runnable {
     Timer timer[] = new Timer[NUM];
     static int FWIDTH=500,FHEIGHT=400;
     int in=0;
-    int speed=15;
+    int speed=10;
     int lifes=10;
 
     static Color c1=Color.ORANGE,c2=Color.YELLOW;
@@ -36,13 +36,9 @@ public class Eggs extends JPanel implements Runnable {
                     break;
                 }
             }
-        }
-
-        catch(Exception e){
+        }catch(Exception e){
             System.out.println(e);
         }
-        //Listener Starts//
-
         for(int i = 0; i < egg.length; ++i ){
             egg[i]  =   new Egg();
             egg[i].setMy(30);
@@ -53,8 +49,7 @@ public class Eggs extends JPanel implements Runnable {
             movers[in]= new EggMover(egg[in], b);
             movers[in].setInitialDelay((in + 1) * 1500);
             movers[in].move();
-
-        }
+    }
 
         MouseListener ml = new MouseAdapter(){
             public void mousePressed(MouseEvent me){
@@ -104,7 +99,7 @@ public void paint(Graphics g2){
     for(int i=0;i<egg.length;++i){
                 egg[i].drawOn(g);
     }
-    }
+}
     
     
     
