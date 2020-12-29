@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.StrokeBorder;
 import javax.swing.border.TitledBorder;
-public class Egg extends Jpanel implements Runnable {
+public class Egg extends JPanel implements Runnable {
     /**
      *
      */
@@ -28,9 +28,9 @@ public class Egg extends Jpanel implements Runnable {
 
     static Color c1=Color.ORANGE,c2=Color.YELLOW;
     
-    public Eggs(){
-        b.set.Mx(30);
-        b.set.My(200);
+    public Egg(){
+        b.setMx(30);
+        b.setMy(200);
         setOpaque(false);
     
         try{
@@ -55,13 +55,13 @@ public class Egg extends Jpanel implements Runnable {
         
     }
         for(in = 0; in < egg.length; ++in){
-            movers[in]= new EggMover(egg[in], b);
+            movers[in]= new EggMover(egg[in],b);
             movers[in].setInitialDelay((in + 1) * 1500);
             movers[in].move();
 
         }
 
-        MouseInputListener ml = new MouseAdapter(){
+        MouseListener ml = new MouseAdapter(){
             public void mousePressed(MouseEvent me){
                 dx= (int)me.getPoint().getX();
                 if(b.contains(me.getPoint())){
@@ -76,20 +76,17 @@ public class Egg extends Jpanel implements Runnable {
         MouseMotionListener mll = new MouseAdapter(){
             public void mouseDragged( MouseEvent me){
                 if (inside == true){
-                    b.setMx( int)me.getPoint().getX();
+                    b.setMx((int)me.getPoint().getX());
                 }
             }
         };
 
-        addMouseListener(mll);
+        addMouseMotionListener(mll);
 
-        th= new Thread(Target this);
+        th= new Thread(this);
         th.start();
     }
 
-    
-
-}
 public void paint(Graphics g2){
     g=(Graphics2D)g2;
     g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -183,9 +180,9 @@ class EggMover{
     Bowl b;
     boolean allowed=true;
     
-    public EggMover(Egg eg,Bowl bl){
+    public EggMover(Egg eg,Bowl b2){
     egg=eg;
-    b=bl;
+    b=b2;
     al=new ActionListener(){
         public void actionPerformed(ActionEvent ae){
             egg.setMy(egg.MY+1);
