@@ -99,11 +99,7 @@ public void paint(Graphics g2){
     for(int i=0;i<egg.length;++i){
                 egg[i].drawOn(g);
     }
-}
-    
-    
-    
-    
+}    
     public void run(){
         try{
             while(true){
