@@ -231,9 +231,7 @@ class EggMover{
         Rectangle r;
         Random rn= new Random();
         
-        Egg(){
-            
-        }
+        
         
         boolean fallsInBowl(Bowl b){
             return r.intersects(b.r);
