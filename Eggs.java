@@ -18,7 +18,7 @@ public class Eggs extends JPanel implements Runnable {
     EggMover movers[]= new EggMover[NUM];
     boolean inside=false;
     Timer timer[] = new Timer[NUM];
-    static int FWIDTH=500,FHEIGHT=400;
+    static int FWIDTH=600,FHEIGHT=500;
     int in=0;
     int speed=10;
     int lifes=10;
