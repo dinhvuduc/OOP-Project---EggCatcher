@@ -20,7 +20,7 @@ public class Eggs extends JPanel implements Runnable {
     Timer timer[] = new Timer[NUM];
     static int FWIDTH=600,FHEIGHT=500;
     int in=0;
-    int speed=10;
+    int speed=15;
     int lifes=10;
 
     static Color c1=Color.ORANGE,c2=Color.YELLOW;
